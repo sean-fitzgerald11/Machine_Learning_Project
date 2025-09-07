@@ -1,54 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background: #24292e;
-            color: white;
-            padding: 40px 20px;
-        }
-        section {
-            margin: 40px 20px;
-        }
-        a {
-            color: #0366d6;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sean Fitzgerald | Machine Learning</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      background-color: #24292e;
+      color: white;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .personal-info {
+      line-height: 1.4;
+    }
+
+    .personal-info div:first-child {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .nav-menu a:hover {
+      background-color: #444;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Your Name</h1>
-        <p>Welcome to my GitHub Pages site!</p>
-    </header>
-    
-    <section>
-        <h2>About Me</h2>
-        <p>This is a short bio about me. I build cool stuff and share it on GitHub.</p>
-    </section>
-    
-    <section>
-        <h2>Find Me Online</h2>
-        <p>
-            <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-            <a href="mailto:youremail@example.com">Email Me</a>
-        </p>
-    </section>
+  <div class="top-bar">
+    <div class="personal-info">
+      <div>Sean Fitzgerald</div>
+      <div>Machine Learning (CSCI 5612)</div>
+      <div>MSDS; CU Boulder</div>
+    </div>
+    <div class="nav-menu">
+      <a href="#introduction">Introduction</a>
+      <a href="#dataprep_eda">DataPrep_EDA</a>
+      <a href="#pca">PCA</a>
+      <a href="#clustering">Clustering</a>
+      <a href="#naivebayes">NaiveBayes</a>
+      <a href="#dectrees">DecTrees</a>
+      <a href="#svms">SVMs</a>
+      <a href="#regression">Regression</a>
+      <a href="#nn">NN</a>
+      <a href="#conclusions">Conclusions</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div id="introduction" class="page active">
+      <h1>Introduction</h1>
+      <p>Welcome to my Machine Learning project site. This is the introduction section.</p>
+    </div>
+
+    <div id="dataprep_eda" class="page">
+      <h1>Data Preparation & EDA</h1>
+      <p>Details about data cleaning, normalization, and exploratory data analysis.</p>
+    </div>
+
+    <div id="pca" class="page">
+      <h1>Principal Component Analysis (PCA)</h1>
+      <p>Explaining dimensionality reduction using PCA.</p>
+    </div>
+
+    <div id="clustering" class="page">
+      <h1>Clustering</h1>
+      <p>K-Means, Hierarchical clustering, and evaluation.</p>
+    </div>
+
+    <div id="naivebayes" class="page">
+      <h1>Naive Bayes</h1>
+      <p>Using probabilistic classifiers for text and numeric data.</p>
+    </div>
+
+    <div id="dectrees" class="page">
+      <h1>Decision Trees</h1>
+      <p>Entropy, Information Gain, and building decision trees.</p>
+    </div>
+
+    <div id="svms" class="page">
+      <h1>Support Vector Machines (SVMs)</h1>
+      <p>Kernel methods, margin maximization, and classification.</p>
+    </div>
+
+    <div id="regression" class="page">
+      <h1>Regression</h1>
+      <p>Linear and logistic regression analysis.</p>
+    </div>
+
+    <div id="nn" class="page">
+      <h1>Neural Networks (NN)</h1>
+      <p>Architecture, backpropagation, and training deep models.</p>
+    </div>
+
+    <div id="conclusions" class="page">
+      <h1>Conclusions</h1>
+      <p>Summary of findings and reflections on the course and project.</p>
+    </div>
+  </div>
+
+  <script>
+    function showPageFromHash() {
+      const hash = window.location.hash.substring(1) || 'introduction';
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      const activePage = document.getElementById(hash);
+      if (activePage) {
+        activePage.classList.add('active');
+      }
+    }
+
+    window.addEventListener('hashchange', showPageFromHash);
+    window.addEventListener('DOMContentLoaded', showPageFromHash);
+  </script>
 </body>
 </html>
