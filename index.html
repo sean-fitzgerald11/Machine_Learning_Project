@@ -177,13 +177,50 @@
         yielded the final cleaned data structure that can be seen below in Figure 7. This data now had one entry for each climate division for each day of record with the aggregate 
         values for each parameter. The code for this data cleaning can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>.
       </p>
-      <img src="Images/AirNow_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 5. Clean AirNow Data">
+      <img src="Images/AirNow_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 7. Clean AirNow Data">
       <h2>Data Exploration and Visualization</h2>
       <p>Once all of the data was cleaned, it was time to explore the data. This exploration allowed for a better understanding of the data and what 
         potential trends or relationships might be learned from the data. This exploration also highlighted which variables were severely lacking in avaiable data. Those variables 
         will be noted and possibly excluded during future analysis due to their lack of temporal availability in relation to the rest of the data.
       </p>
-
+      <img src="Images/Max Temp Over Time by Division.png" style="display: block; margin: 0 auto;" alt="Figure 8. Viz group 1">
+      <p>The above grid shows a comparison of the maximum temperature for the year from 1895 to 2025 for each climate division.
+        It is interesting to note that each division has a different temperature profile that it oscilates between. However, it appears 
+        from visual inspection that each division does have an upward trend in temperature, as would be expected.
+      </p>
+      <img src="Images/Avg TEmp Over Time by Division.png" style="display: block; margin: 0 auto;" alt="Figure 9. Viz group 2">
+      <p>The above grid shows a comparison of the average temperature for the year from 1895 to 2025 for each climate division. Similar to 
+        the maximum temperature, we can see a clear separation in the temperature variation range depending on climate division.
+      </p>
+      <img src="Images/PDSI Over Time_Division 4.png.png" style="display: block; margin: 0 auto;" alt="Figure 10. Viz 5">
+      <p>This graph shows the PDSI value over time. A positive PDSI value means means a wet spell while a negative value indicates a dry spell. 
+        The PDSI is used to gauge the severity of dry or wet spell. Over time, it appears as though climate division 4 is spending more time with a 
+        PDSI that is negative, indicating an more drought stricken environment.
+      </p>
+      <img src="Images/Total HDD_Division 3.png" style="display: block; margin: 0 auto;" alt="Figure 11. Viz 6">
+      <p>This graph shows the total value of Heating Degree Days by year, over time. A higher value for a year would indicate colder temperatures on average 
+        over the year, implying more heating would be needed to maintain comfortable temperatures inside. The plot suggests a downward trend, meaning less 
+        need for heating over the year.
+      </p>
+      <img src="Images/Total CDD_Division 3.png" style="display: block; margin: 0 auto;" alt="Figure 12. Viz 7">
+      <p>This graph show the total value of Cooling Degree Days by year, over time. A higher value for a year would indicate hotter temperatures on average 
+        over the year, implying more cooling would be needed to maintain comfortable temperatures inside. The plot suggests a upward trend, meaning more 
+        need for cooling over the year.
+      </p>
+      <img src="Images/PM10_Division 4.png" style="display: block; margin: 0 auto;" alt="Figure 13. Viz 8">
+      <p>This graph shows the Coarse Particulate Matter concentrations (PM10, micrograms per cubic meter) daily readings over time for climate division 4. From initial 
+        inspection it does not appear as though any general trend is present within the data. More exploration will be needed to see if any conclusions can be 
+      drawn from this data and connected to any climate conclusions.
+    </p>
+      <img src="Images/NO2_Division 4.png" style="display: block; margin: 0 auto;" alt="Figure 14. Viz 9">
+      <p>This graph show the Nitrogen Dioxide concentrations for climate division 4 over time. The graph suggests that the concentrations are both decreased over the 
+        entire time period and also have shown less variability. A slight upward trend could potentially be materializing, as observed in the last part of the line graph.
+      </p>
+      <img src="Images/SO2_Division 4.png" style="display: block; margin: 0 auto;" alt="Figure 15. Viz 10">
+      <p>This graph shows the Sulphur Dioxide concentrations for climate division 4 over time. The graph shows that a lot of historical data is missing for these measurements, 
+        as indicated by the stretches of line that lie on the zero line for the y-axis. However, concentration measurements seem to have increased in quality in recent times and 
+        appear to be showing a strong general upward trend.
+      </p>
       <!--This is the code to hyperlink text.
       <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">text</a>
     -->
