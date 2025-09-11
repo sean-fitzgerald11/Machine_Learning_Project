@@ -102,12 +102,12 @@
         Divisional Dataset. For many years this was the only available long-term temporally and spatially complete dataset (NCEI,NOAA,https://www.ncei.noaa.gov/access/monitoring/dyk/us-climate-divisions). 
         The breakdown of climate division for the contiguous United States can be seen below in Figure 1.
       </p>
-      <img src="Images/us-climate-divisions.gif" alt="Figure 1. United States Climate Divisions">
+      <img src="Images/us-climate-divisions.gif" style="display: block; margin: 0 auto;" alt="Figure 1. United States Climate Divisions">
       <p>The climate divisions above were determined based on identifying regions with similar climate conditions based on geographical features, vegeation, and 
         weather patterns. Below, in Figure 2, we can see a close up of the climate divisions within Colorado. We can observe that for Colorado, the most impactful 
         boundary between the divisions are the topological features of the state. Most of the division boundaries consist of mountainous or elevated terrain.
       </p>
-      <img src="Images/Colorado Climate Divisions.png" alt="Figure 2. Colorado Climate Divisions">
+      <img src="Images/Colorado Climate Divisions.png" style="display: block; margin: 0 auto;" alt="Figure 2. Colorado Climate Divisions">
       <p>It stands to reason that due to these differences in climate division, people living within Colorado stand to experience the effects of climate change differently
         depending on where they are located within the state. These differences might include changes in average maximum or minimum temperature or experience of drought or 
         rain events. Additionally, the the impacts of a changing climate could be felt in a change of the air quality that someone experiences. The Intergovernmental Panel 
@@ -132,7 +132,61 @@
 
     <div id="dataprep_eda" class="page">
       <h1>Data Preparation & EDA</h1>
-      <p>Details about data cleaning, normalization, and exploratory data analysis.</p>
+      <h2>Climate Data</h2>
+      <p>The climate data collected for this analysis was from the <a href="https://www.ncei.noaa.gov/access/metadata/landing-page/bin/iso?id=gov.noaa.ncdc:C00005" target="_blank">National Oceanic and Atmospheric Administration (NOAA)</a>. 
+        NOAA maintains and publishes a thorough, temporal, and spatially aligned dataset called the Global Historical Climatology Network (GHCN) Daily dataset. This dataset is the 
+        basis for the Climate Divisions datasets, which are being used in this analysis. These datasets are aggregations of the GHCN-Daily. The independent 
+        station data is interpolated to grid-point estimates and then area-weighted to determine the recorded value for the climate division. 17 total datasets 
+        were downloaded to cover data including temperature, precipitation, heating and cooling degree days, and a variety of drought indexes. A sample of 
+        the raw data can be seen below in Figure 3.
+      </p>
+      <img src="Images/NOAA_Raw_Data.png" style="display: block; margin: 0 auto;" alt="Figure 3. Raw NOAA Data">
+      <p>As can be seen above, this data is provided in wide format with monthly values for each climate division. Additionally, this data table is only for 
+        element code 07, which is the code for the Palmer "Z" Index. Additional data tables for the 16 other variables were also produced in a similar manner. In 
+        order to allow for all 17 variable tables to be merged into a singular dataset, each table was converted to a long format with a new column for the values 
+        for that variable. The tables were then merged, a new date column was constructed to combine the year and month, and the element code column was removed. The 
+        last step was to remove any values that were stand ins for missing or inaccurate data. The documenation noted that missing values for variables would be denoted 
+        with -9.99, -99.90, -99.99, or -9999, depending on the variable. These values were dropped and replaced with NaNs. The reasoning for replacing with NaN instead 
+        of imputing values was due to the fact that the missing value was mostly likely due to unreported or incorrectly reported data. As discussed earlier, the data 
+        in these datasets were interpolated and area-weighted data already. Therefore, it was decided that any attempt at imputing a value for the missing value would 
+        just be a re-interpolation or aggregation of data that was already interpolated/aggregated. Without knowing the exact data points that were used to 
+        formulate climate division data, any additional interpolation or aggregation could have potentially given undue weight to certain original indepent station 
+        observations, skewing the data for the entire division towards that one area. A sample of the final cleaned dataset for the NOAA data can be seen below in Figure 4. The 
+        code for the processing and cleaning of the data can be found in the GitHub repository for this project <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" 
+        target="_blank">here</a>. The name of the code file is 'NOAA Data Import and Cleaning.ipynb'.
+      </p>
+      <img src="Images/NOAA_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 4. Cleaned NOAA Data">
+      <h2>AirNow Data</h2>
+      <p>The second part of the dataset for this analysis was collected from <a href="https://www.airnow.gov/" target="_blank">AirNow.gov</a>. AirNow is a partnership of the United States Environmental Protection Agency (EPA), 
+        NOAA, National Park Service (NPS), NASA, Centers for Disease Control (CDC), and local, state, and tribal air quality agencies. AirNow centralized data system 
+        provides quality control, national reporting consistency, and the ability to distrbute data to the public. The AirNow data for this analysis was collected by two different 
+        means. The first was through the use of AirNow's Application Programming Interface (API). This API allowed for the download of historical hourly air quality data from 54 
+        different sensor stations across Colorado. Through the use of this API data was downloaded for January 1st, 2024 through July 31st, 2025. The reason for this small time period
+        was due to the massive amount of data included in each day and the rate limit imposed by the API. The API endpoint for this specific data was 'Observations by Monitoring Site'. 
+        The documentation for this endpoint can be found on AirNow's website <a href="https://docs.airnowapi.org/Data/docs" target="_blank">here</a>. The implementation of the API call 
+        can be seen below in Figure 5. The GET url was dynamically changed during the code execution which allowed for multiple GET calls to be executed while the code was running. 
+        The full code for the API implementation can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>. The file name 
+        for the code is 'AirNow API for Data Acquisition'.
+      </p>
+      <img src="Images/API_Code.png" style="display: block; margin: 0 auto;" alt="Figure 5. API Code">
+      <img src="Images/AirNow_Raw_Data.png" style="display: block; margin: 0 auto;" alt="Figure 6. Raw AirNow Data">
+      <p>The raw AirNow data can be seen above in Figure 6. The data in this raw form was in long format, with all of the different parameters listed in one column and each 
+        station having multiple entries depending on which parameter was being recorded. The first thing that was done was to map each staion ID to the 
+        climate division that it was located in. This would faciliate aggregating the data up to the climate division level. Next, in order to simplify the data structure, 
+        the table was converted to a wide format so that each parameter had its own column. At the same time, values for each parameter were agregated up to the division level. This 
+        yielded the final cleaned data structure that can be seen below in Figure 7. This data now had one entry for each climate division for each day of record with the aggregate 
+        values for each parameter. The code for this data cleaning can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>.
+      </p>
+      <img src="Images/AirNow_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 5. Clean AirNow Data">
+      <h2>Data Exploration and Visualization</h2>
+      <p>Once all of the data was cleaned, it was time to explore the data. This exploration allowed for a better understanding of the data and what 
+        potential trends or relationships might be learned from the data. This exploration also highlighted which variables were severely lacking in avaiable data. Those variables 
+        will be noted and possibly excluded during future analysis due to their lack of temporal availability in relation to the rest of the data.
+      </p>
+
+      <!--This is the code to hyperlink text.
+      <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">text</a>
+    -->
     </div>
 
     <div id="pca" class="page">
