@@ -221,9 +221,6 @@
         as indicated by the stretches of line that lie on the zero line for the y-axis. However, concentration measurements seem to have increased in quality in recent times and 
         appear to be showing a strong general upward trend.
       </p>
-      <!--This is the code to hyperlink text.
-      <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">text</a>
-    -->
     </div>
 
     <div id="pca" class="page">
@@ -233,7 +230,46 @@
 
     <div id="clustering" class="page">
       <h1>Clustering</h1>
-      <p>K-Means, Hierarchical clustering, and evaluation.</p>
+      <h2>Overview</h2>
+      <p>Clustering is an unspervised machine learning technique that uses unlabeled data to discover groupings or patterns within a dataset. 
+        Unspervised means that the model does not have any target outputs that it is trained on like a regression model. It is not trying to predict 
+        a specific outcome or achieve a particular accuracy. Instead, the model is left to discover patterns on its own. The two clustering models that 
+        where utilized were K-Means clustering and Hierarchical Clustering.
+      </p> 
+      <p>K-Means clustering works by first setting locations for the centroids for each cluster. The k value specified determines the number of resulting 
+        clusters and therefore the number of centroids that are initially set. Then, the algorithm measures the distance from one point to each of the centroids. 
+        The distance measurement used for the K-Means clustering in this project was the Euclidean distance. The point is then assigned to cluster of the centroid that is the closetst. 
+        This happens for each point in the dataset. Once all points have been assigned, the centroids are recalculated so that they are moved to the center 
+        of the points that were assigned to their cluster. Then, the process happens again. The distance from a point to all the centroids is calculated. If a 
+        point is now closer to a different centroid it is reassigned to that cluster. All the points are rechecked and reassigned if necessary. Then the centroids 
+        are recalculated and adjusted. This process continues until no points are reassigned and the centroids do not need to be adjusted.
+      </p>
+      <p>Hierarchical clustering works in a different manner. It takes all points in a dataset and assigns each point to its own cluster. It then calculates the 
+        distance between each pair of clusters and merges each cluster pair that has the smallest distance between them. It then recalculates the distance between all 
+        the new cluster pairs and again merges each cluster pair that has the smallest distance between them. This merging continues until you end up with one final cluster. This 
+        process allows us to see how our data is iteratively clustered so that we can pick an appropriate number of clusters for our data that will provide an appropriate amount of 
+        segmentation for analysis and interpretability.
+      </p>
+      <p>These techniques will be used to discover multivariate interactions within our dataset, which includes climate and air quality data for the state of Colorado. In Figure 1 below, 
+        the visualization of K-Means clustering gives an example of the clustering that will occur. This figure is a 2-D representation, however the dataset to be clustered will 
+        contain 10 different variables, so it will not be possible to visualize the data in this hyperdimensional space. Figure 2 below is an example of a Dendrogram. This visualization 
+        shows the agglomerative clustering process of the hierarchical clustering technique in visual form. On the x-axis is each individual point. The lines then show how the points and 
+        clusters were merged together to get larger and larger clusters. 
+      </p>
+      <figure style="text-align: center;">
+      <img src="Images/K-Means.png" style="display: block; margin: 0 auto;" alt="Figure 1. K-Means">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: Geeks for Geeks (https://www.geeksforgeeks.org/machine-learning/ml-k-means-algorithm/)</figcaption>
+      </figure>
+      <figure style="text-align: center;">
+      <img src="Images/Dendrogram-Example.png" style="display: block; margin: 0 auto;" alt="Figure 1. Dendrogram Example">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: Data Novia (https://www.datanovia.com/en/lessons/examples-of-dendrograms-visualization/)</figcaption>
+      </figure>
+      <h2>Data Prep</h2>
+      <p></p>
+      <h2>Results</h2>
+      <p></p>
+      <h2>Conclusions</h2>
+      <p></p>
     </div>
 
     <div id="naivebayes" class="page">
