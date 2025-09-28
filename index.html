@@ -51,6 +51,8 @@
     }
 
     .content {
+      max-width: 800 px;
+      margin: 0 auto;
       padding: 40px;
     }
 
@@ -89,32 +91,39 @@
     <div id="introduction" class="page active">
       <h1>Introduction</h1>
       <p>Global warming and climate change have been topics of national and international discussion for decades. Countless research and 
-        academic papers how quantified and solidified the effects that human activity is having on our climate, specifically the average temperature 
+        academic papers have quantified and solidified the effects that human activity is having on our climate, specifically the average temperature 
         of our planet. However, despite the urgency, it seems less and less likely that the necessary steps to avoid the worst outcomes are 
-        likely to be taken in the time necessary. Thus, it is important to continue to work to understand as much as we can about our climate 
-        and how it is changing. However, it is also becoming increasinly important to understand the implications that a changing climate will 
+        going to be taken in the time necessary. Thus, it is important to continue to work to understand as much as we can about our climate 
+        and how it is changing. Additionally, it necessary to understand the implications the changing climate will 
         have on our lived environment. This understanding includes the changes to severe weather events such as wilfires, droughts, hurricanes, 
         tornados. It also includes changes to experienced droughts or heavy rain events, the intensity of temperatures during different seasons, 
-        especially summer and winter. All of these changes will most likely be materailly felt by all. Therefore, understanding the impacts that 
+        especially summer and winter. All of these changes will be materially felt by everyone. Therefore, understanding the impacts that 
         can be expected can assists people in adapting to this changing climate and changing world.  
       </p>
       <p>In an effort to provide accurate and useful data in which to conduct historical climate analyses, NOAA generates and provides the Climate 
         Divisional Dataset. For many years this was the only available long-term temporally and spatially complete dataset (NCEI,NOAA,https://www.ncei.noaa.gov/access/monitoring/dyk/us-climate-divisions). 
-        The breakdown of climate division for the contiguous United States can be seen below in Figure 1.
+        The breakdown of climate divisions for the contiguous United States can be seen below in Figure 1.
       </p>
       <img src="Images/us-climate-divisions.gif" style="display: block; margin: 0 auto;" alt="Figure 1. United States Climate Divisions">
-      <p>The climate divisions above were determined based on identifying regions with similar climate conditions based on geographical features, vegeation, and 
-        weather patterns. Below, in Figure 2, we can see a close up of the climate divisions within Colorado. We can observe that for Colorado, the most impactful 
-        boundary between the divisions are the topological features of the state. Most of the division boundaries consist of mountainous or elevated terrain.
+      <p>These climate divisions were determined by identifying regions with similar climate conditions based on geographical features, vegeation, and 
+        weather patterns. Below, in Figure 2, we can see a close up of the climate divisions within Colorado. Colorado consists of 5 different climate divisions. 
+        Climate Division 1 consists of the southeastern portion of the state, highlighted in green. Division 2 is the western portion of the state on the windward side 
+        of the Rocky Mountains. Division 3 consists of the far eastern plans, highlighted in pink. Division 4 is the northern front range, including cities like 
+        Denver, Boulder, and Fort Collins. It is highlighted in maroon. Lastly, Division 5 is the southern central portion of Colorado, which is lightly shaded white. 
+        We can observe that for these divisions, the most impactful boundary between them are the topological features of the state. Most of the division boundaries 
+        consist of mountainous or elevated terrain.
       </p>
       <img src="Images/Colorado Climate Divisions.png" style="display: block; margin: 0 auto;" alt="Figure 2. Colorado Climate Divisions">
-      <p>It stands to reason that due to these differences in climate division, people living within Colorado stand to experience the effects of climate change differently
-        depending on where they are located within the state. These differences might include changes in average maximum or minimum temperature or experience of drought or 
-        rain events. Additionally, the the impacts of a changing climate could be felt in a change of the air quality that someone experiences. The Intergovernmental Panel 
-        on Climate Change and the United States Environmental Protection Agency have both recognized the potential for climate change to impact the air quality that we 
-        experience. 
+      <p>It stands to reason that due to these differences in climate division, people living within Colorado will experience the effects of climate change differently
+        depending on their region. These differences could include changes in average maximum or minimum temperature or experience of drought or 
+        rain events. The impacts of a changing climate are not only seen in climactic conditions. The Intergovernmental Panel on Climate Change and the United States 
+        Environmental Protection Agency have both recognized the potential for climate change to impact the air quality that we experience. Differing levels of ozone,
+        fine particulate matter (PM 2.5), coarse particulate matter (PM 10), and gaseous pollutants from human activity such as carbon monoxide (CO), sulphur dioxide (SO2), 
+        and nitrogen dioxide (NO2). These last three pollutants are more prevalent in cities due to a higher density of cars and fossil fuel burning. The exploration of the link 
+        between climactic conditions and improving or worsening air quality is a topic that deserves more attention and analysis.
       </p>
-      <p>Ten questions that I would like to answer thorugh my research are:
+      <p>With the data provided, the possibilities for interesting and unique insights are plentiful. Thus, ten questions that I hope to be able to answer through my research and 
+        investigation are:
       <ol>
         <li>Is there a significant difference in the trend of maximum and minimum temperature change over time between the different climate divsions?</li>
         <li>Is there a significant difference in the amount of precipitation experienced over time by each climate division?</li>
@@ -225,7 +234,58 @@
 
     <div id="pca" class="page">
       <h1>Principal Component Analysis (PCA)</h1>
-      <p>Explaining dimensionality reduction using PCA.</p>
+      <h2>Overview</h2>
+      <p>Principal Component Analysis is a mathemtical technique used to reduce the dimensionality of a dataset while attempting to retain the most "information" or variance from 
+        your data as possible. This is necessary due to a concept refered to as the 'Curse of Dimensionality'. This curse is in reference to the multiple problems that arise as a 
+        dataset increases in dimension. This issues include data sparcity, distance concentration, exponential growth in computation and storage, and overfitting. Therefore, the ability 
+        to reduce the dimensionality of your dataset aids in reducing or solving these problems. Another issue with highly dimensional data is visualization. It is not possible for us to 
+        visualize anything that is greater than 3 to 4 dimensions. Therefore, results that exist in higher dimensional spaces become increasingly harder to interpret and understand.
+      </p>
+      <p>PCA relies on the use of eigenvectors and eigenvalues to achieve dimensionality reduction. Eigenvectors are new directions or axis through the feature space. They are what define our 
+        new priciple components. Eigenvectors can be thought of as the new axes through our data that maximize the variance. Additionally, each eignevector is orthogonal to each other, which 
+        ensures that there is no redundancy between any of our principle components. Each eigenvector has a corresponding eigenvalue. This eigenvalue measures the amount of variance that is 
+        captured along that eigenvector. This allows us to rank our principal components from highest explained variance to lowest explained variance. In doing so, we are able to drop principal 
+        components that have little explained variance, which allows us to reduce the dimensionality of our data. Figure 1 below is a representation of a dataset that has two principal components 
+        drawn through it. As you can see, the new principal components Z and W are not changing the data in any way but are just better aligned to maximize the amount of variance in the data that is 
+        explained by each axis. Figure 2 show an example of an explained variance plot. As you can see, the pricipal components are ordered from highest to lowest amount of explained variance. The line 
+        on the plot shows the total explained variance as more pricipal components are considered. Generally, it is desirable to keep enough pricipal components to explain 95% of the variance in 
+        the data.
+      </p>
+      <figure style="text-align: center;">
+      <img src="Images/PCA_Example.png" style="display: block; margin: 0 auto;" alt="Figure 1. PCA Example">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: NUMXL (https://numxl.com/blogs/principal-component-analysis-pca-101/?srsltid=AfmBOoqCdDqIUwtu6A6FETgpMDNUWUSziiAJR5B6e-g1jlruNi2mBVR3)</figcaption>
+      </figure>
+      <figure style="text-align: center;">
+      <img src="Images/Explained_Variance_Example.png" style="display: block; margin: 0 auto;" alt="Figure 2. Explained Variance Example">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: Analytics Yogi (https://vitalflux.com/pca-explained-variance-concept-python-example/)</figcaption>
+      </figure>
+      <h2>Data Prep</h2>
+      <p>Data preparation for Principal Component Analysis was similar to the data preparation that was conducted for our Clustering models. The dataset was first stripped of any categorical or 
+        labeling features, leaving just the numerical features of our dataset. Next, the dataset was cleaned to remove any features that were too sparse. This included CO, SO2, and NO2 which had significant 
+        gaps in data availability. Lastly, the data was normalized. Normalization is important because PCA is looking to capture the variance in the dataset. If there are some features that are much larger 
+        in scale than others, this would cause the algorithm to give undue weight to the variance of these features, skewing our output. Figure 3 below shows our final cleaned and scaled dataset ready for PCA. 
+        This data can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Data" target="_blank">here</a>. All of the code for this model can be found 
+        <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>. The title of the codebook is 'PCA'.
+      </p>
+      <h2>Results</h2>
+      <p>When assessing the outcomes of Principal Component Analysis on my dataset, the first step was to look at the explained variance for each principal component. Figure 3 below shows a plot of the amount of 
+        variance explained in the data as each additional pricipal component is considered. A good rule of thumb is to include enough pricipal components to explain 95% of the variance within the data. From this 
+        plot we can see that the first 7 principal components should be kept in order to explain enough of the variance of the original data. Although PCA did help reduce the dimensionality of the data, 7 features 
+        instead of 10 features is not a large reduction in dimensionality.
+      <img src="Images/Explained_Variance.png" style="display: block; margin: 0 auto;" alt="Figure 3. Explained Variance">
+      </p>
+      <p>Next, we want to work to understand how each original feature in our dataset contributed to our principal components. We can do this with the use of a biplot. A biplot is a scatter plot of our data points that 
+        are projected into the 2D space formed by PC1 and PC2, our two most informative eigenvectors. On this plot we then overlay the loadings of our original variables for these two components. The results can be seen 
+        in Figure 4. Average temperature, cooling degree days, and ozone concentrations contributed the most to PC1 whereas precipitation, our drought index, and our precipitation indexes contributed the most to PC2. 
+      </p>
+      <img src="Images/Biplot.png" style="display: block; margin: 0 auto;" alt="Figure 3. Biplot">
+      <h2>Conclusions</h2>
+      <p>Overall, I learned that I could safely reduce the number of features in my dataset from 10 to 7, if I wanted to use the pricipal components in further model analysis instead of my original feature 
+        values. Although this is ideal for reducing dimensionality, pricipal components can be hard to interpret since they are amalgamations of the original features. This could make model interpretation much 
+        more difficult. As other models are explored, interpretability will have to be weighed with preformance issues due to dimensionality so see which impact outweighs the other. From looking at the biplot, we can 
+        deduce that PC1 can be thought of as a temperature gradient, ranging from cold temperatures (negative) to hot temperatures (positive). PC2 can be interpreted as a hydrological or moisture gradient with positive values 
+        indicating higher precipitation or drought related conditions while lower values indicate less precipiation or absence of drought.
+      </p>
     </div>
 
     <div id="clustering" class="page">
@@ -272,7 +332,8 @@
         each feature can be considered equally. For our data, we used normalization scaling. This gives each feature a mean of 0 and a standard deviation of 1. For this model we chose to consider ten different 
         features; Average Temperature (tmpc), Precipitation (pcpn), Palmer Drought Severity Index (pdsi), Standardized Precipitation Index (SP) for 1-month, 9-month, and 24-month, Cooling Degree Days (cddc), 
         Heating Degree Days (hddc), Fine Particulate Matter levels (PM 2.5), and Ozone levels (OZONE). Figure 3 below shows the results of our final prepared data with all ten features with the values normalized. 
-        The data can also be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Data" target="_blank">here</a>.
+        The data can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Data" target="_blank">here</a>. All of the code for this model can be found 
+        <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>. The title of the codebook is 'Clustering'.
       </p>
       <img src="Images/Clustering_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 3. Prepped Data">
       <h2>Results</h2>
