@@ -261,15 +261,54 @@
       <figcaption style="font-size: 0.9em; color:gray;">Source: Geeks for Geeks (https://www.geeksforgeeks.org/machine-learning/ml-k-means-algorithm/)</figcaption>
       </figure>
       <figure style="text-align: center;">
-      <img src="Images/Dendrogram-Example.png" style="display: block; margin: 0 auto;" alt="Figure 1. Dendrogram Example">
+      <img src="Images/Dendrogram-Example.png" style="display: block; margin: 0 auto;" alt="Figure 2. Dendrogram Example">
       <figcaption style="font-size: 0.9em; color:gray;">Source: Data Novia (https://www.datanovia.com/en/lessons/examples-of-dendrograms-visualization/)</figcaption>
       </figure>
       <h2>Data Prep</h2>
-      <p></p>
+      <p>As mentioned above, clustering techniques need unlabeled data. This is because the technique uses distance to determine similarity in order to group like points together. Therefore, 
+        in order to prepare our data for the model we needed to strip out any identifying columns. Additionally, clustering models only work with numerical data. This is because the basis of the 
+        methods is distance between points. Therefore the points need to be represented as numbers for this technique to work. Lastly, the data needed to be scaled in some manner. If different features 
+        of the data have different scales, the features with the larger scales will exert more influence on the results since distance measurements are being used. To avoid this, we scale the data so that 
+        each feature can be considered equally. For our data, we used normalization scaling. This gives each feature a mean of 0 and a standard deviation of 1. For this model we chose to consider ten different 
+        features; Average Temperature (tmpc), Precipitation (pcpn), Palmer Drought Severity Index (pdsi), Standardized Precipitation Index (SP) for 1-month, 9-month, and 24-month, Cooling Degree Days (cddc), 
+        Heating Degree Days (hddc), Fine Particulate Matter levels (PM 2.5), and Ozone levels (OZONE). Figure 3 below shows the results of our final prepared data with all ten features with the values normalized. 
+        The data can also be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Data" target="_blank">here</a>.
+      </p>
+      <img src="Images/Clustering_Data_Cleaned.png" style="display: block; margin: 0 auto;" alt="Figure 3. Prepped Data">
       <h2>Results</h2>
-      <p></p>
+      <p>K-Means clustering was the first model employed with the data. The silhouette method was used to determine the optimal value for k, which is the number of clusters to be produced by the model. Figure 4 below shows 
+        the silhouette plot, which demonstrates that the optimal number of clusters for our data was 2.
+      </p>
+      <img src="Images/Sihouette Plot.png" style="display: block; margin: 0 auto;" alt="Figure 4. Silhouette Plot">
+      <p>Using this value for k, the data was fed back into the model and the resulting cluster assignments were mapped back onto our original dataframe. This dataframe was then segmented so that each month was assigned a season. 
+        This allowed for seasonal interpretation of the cluster assignment over time. The results can be seen below in Figure 5.
+      </p>
+      <img src="Images/k-Means_Clustering_Results.png" style="display: block; margin: 0 auto;" alt="Figure 5. K-Means Results">
+      <p>Next, a hierarchical clustering model was used with the data to see if differing results would be obtained. The same pre-prepared data from above was used for this model as well. The model was run and Figure 6 below 
+        shows the resulting dendrogram.
+      </p>
+      <img src="Images/Dendrogram_Results.png" style="display: block; margin: 0 auto;" alt="Figure 6. Dendrogram Results">
+      <p>As can be seen from the dendrogram, the recomended number of clusters for our data was 5. This was very different than the number of clusters recommended by the silhouette plot for our k-means clustering model. The hierarchical 
+        clustering model was run with specifying 5 clusters and the resultant cluster assignments were mapped back onto our original dataframe. This data was also segmented by season. Figure 7 below shows the cluster assignment over time 
+        for each season.
+      </p>
+      <img src="Images/Hierarchical_Results.png" style="display: block; margin: 0 auto;" alt="Figure 6. Hierarchical Results">
       <h2>Conclusions</h2>
-      <p></p>
+      <p>From these results we were able to draw several conclusions. For K-Means clustering, the model was able to identify two distinct climate and air quality patterns. Upon analysis of the data within each cluster we were able 
+        to determine that Cluster 0 represented a climate regime that was significantly warmer than average, experienced slightly more precipitation, had a high cooling demand and a low heating demand, 
+        and had significantly elevated ozone levels. Cluster 1 represented a climate regime that was cooler than average, slightly drier than average, had high heating demand, and low particulate and ozone levels. From the graphs in 
+        Figure 5 we can see that Cluster 0 more closely aligned with Summer and Spring and Cluster 1 more closely aligned with Winter and Autumn. Although winter and summer did not appear to vary much in cluster 
+        assignment, some interesting results can be observed for Spring and Autumn. For Spring it appears as though the cluster assigment has been shifting from summer like to winter like between 2023 and 2025. This could be suggesting 
+        that colder winter temperatures are lingering longer. For Autumn, we can see a slight dip towards Cluster 0 from 2024 to 2025. Although the change is slight, it could indicate the possible starting of a shift towards warmer weather 
+        during Autumn.  
+      </p>
+      <p>For hierarchical clustering, the results were more interesting because there were 5 clusters in total instead of just 2. The characteristics of each cluster were: Cluster 1: cool, moderately dry, low air pollution; Cluster 2: 
+        moderate temperature, dry, low to moderate air pollution; Cluster 3: hot, dry, significant air pollution; Cluster 4: temperate, wet, moderate air pollution; and Cluster 5: hot, humid, and high ozone but low particulate pollution. 
+        From these definitions we can see that the seasons do not directly align with a particular cluster, which gives us a more granular analysis for how climate and air quality conditions are changing over time by season. Figure 7 below 
+        shows the breakdown of the prevalence of each cluster for each year, by season. This combined with Figure 6 above allows us to draw a few conclusions. Winter tended towards Cluster 1, while Summer tended towards Cluster 5. Autumn tended 
+        towards Cluster 1 or 2, with not much variation outside of those two. Spring, however, varied considerably between cluster assignments depending on the year. These results could indicate that climate and air quality impacts are cause the 
+        most variability with Spring conditions and this is where more of the changes are going to be felt.
+      </p>
     </div>
 
     <div id="naivebayes" class="page">
