@@ -394,7 +394,7 @@
         instead of the inputs consisting of frequencies of words, the input is a binary choice, yes or no, 1 or 0. This represents not the frequency of the word but just if the 
         word was present or absent. This model is useful when the presence or absence of a word is more important that the fequency with which the word occurs. 
       </p>
-      <h3>Data Prep</h3>
+      <h2>Data Prep</h2>
       <p>Since Naive Bayes is a supervised learning algorithm it requires "labeled" data in order to be trained correctly. This is a requirement because supervised learning 
         algorithms are not determining their own classes or groups for the data, they are learning what those classes are based on the data that is provided. Lets consider spam 
         filters as an example. The spam filter is trained on email data that is already classified as either spam or not spam. In doing so, the algorithm is able to analyze the features 
@@ -419,7 +419,7 @@
       <img src="Images/NB Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 2. Training Set">
       <img src="Images/NB Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 3. Testing Set">
 
-      <h4>Results</h4>
+      <h2>Results</h2>
       <p>The Naive Bayes Classifier Model was used to predict the Climate division based on the 8 climate variables and 2 air quality varaibles referenced above. Implementing the model in this way 
         was intentional because it allowed for climate division classification based on the features. However, it also provided insight into how distinct the climate divisions were from each other based 
         on these variables. A model that had a very high classfification would indicate that the climate divisions were very distinct based on the features while a model with a lower accuracy would indicate 
@@ -432,7 +432,7 @@
         accuracy of 0.33. We can see from the confusion matrix above the the model had a very difficult time classifying climate division 1, with division 1 observations being incorrectly classified as 
         division 2 just as many times as being correctly classified. The model performed better for division 4, achieving correct classification for the division almost 50% of the time. The model performed 
       the best for division 2, with the most correct classifications.</p>
-      <h5>Conclusions</h5>
+      <h2>Conclusions</h2>
       <p>Based on the results above, we can conclude that although is seems as though there are slight variations in climate and air quality conditions between the divisions that could help to define each division, these 
         differences are not strong enough to get a good classification for a majority of entries. The model performed the best for class 2, which could signal that division 2 has the most unique climate and air 
         qualtity conditions of the three divisions. This would be followed by division 4, although division 4 shares similar climate and air quality profiles as division 2, which is evidenced by the high rate of 
@@ -459,7 +459,7 @@
         have continuous variables, there are techincally an infinite number of trees that could be produced based on infintesimally small adjustments to the values of splitting features. Therefore, criteria needs to be set to help the algorithm determine 
         the best tree within constraints to prevent overfitting. 
       </p>
-      <h3>Data Prep</h3>
+      <h2>Data Prep</h2>
       <p>Since a Decision Trees is a supervised learning algorithm it requires "labeled" data in order to be trained correctly. This is a requirement because supervised learning 
         algorithms are not determining their own classes or groups for the data, they are learning what those classes are based on the data that is provided. Lets consider spam 
         filters as an example. The spam filter is trained on email data that is already classified as either spam or not spam. In doing so, the algorithm is able to analyze the features 
@@ -483,9 +483,9 @@
       <img src="Images/DT Dataset.png" style="display: block; margin: 0 auto;" alt="Figure 1. Decision Tree Dataset">
       <img src="Images/DT Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 2. Training Set">
       <img src="Images/DT Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 3. Testing Set">
-      <h4>Results</h4>
+      <h2>Results</h2>
       <p></p>
-      <h5>Conclusions</h5>
+      <h2>Conclusions</h2>
       <p></p>
     </div>
 
