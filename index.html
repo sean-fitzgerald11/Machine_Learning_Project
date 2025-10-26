@@ -53,7 +53,7 @@
     .content {
       max-width: 900px;
       width: 100%;
-      margin: 100px auto;
+      margin: 30px auto;
       padding: 40px;
     }
 
@@ -378,12 +378,115 @@
 
     <div id="naivebayes" class="page">
       <h1>Naive Bayes</h1>
-      <p>Using probabilistic classifiers for text and numeric data.</p>
+      <h2>Overview</h2>
+      <p>Naive Bayes (NB) is a supervised learning classification algorithm. This means that the algorithm requires labeled training data so that 
+        the algorithm can learn the features of the specific classes in the dataset. Then, with this knowledge, the algorithm is able to classify new 
+        data that it has not seen before. The way that Naive Bayes works is using Bayes Theorem of conditional probabilities. It is called "Naive" because the 
+        algorithm naivelly assumes that all of the features in the dataset are conditionally indpendent given the class, which is not always true. The algorithm learns 
+        the probability of a feature given its class, and does this for all of the features in the training dataset. Once the algorithm knows these probabilities, it can 
+        then use bayes theorem to take a new data point and predict its class based on the features that it contains.
+      </p>
+      <p>One specific algorithm under the Naive Bayes umbrella 
+        is Multinomial Naive Bayes. This algorithm is typically used for document classification, spam detection, or sentiment analysis. The model takes in a training dataset 
+        that includes frequency counts for each feature (in this case different words). The model learns what counts of specific words correlates to different classes, for 
+        instance spam or not spam. Then, when the model is given a set of frequencies of different words within an email it has not seen, the model will be able to classify if that 
+        email is spam or not spam. Another variant of Naive Bayes is called Bernoulli Naive Bayes. The difference with this variant is that its inputs are binary. In this case, 
+        instead of the inputs consisting of frequencies of words, the input is a binary choice, yes or no, 1 or 0. This represents not the frequency of the word but just if the 
+        word was present or absent. This model is useful when the presence or absence of a word is more important that the fequency with which the word occurs. 
+      </p>
+      <h3>Data Prep</h3>
+      <p>Since Naive Bayes is a supervised learning algorithm it requires "labeled" data in order to be trained correctly. This is a requirement because supervised learning 
+        algorithms are not determining their own classes or groups for the data, they are learning what those classes are based on the data that is provided. Lets consider spam 
+        filters as an example. The spam filter is trained on email data that is already classified as either spam or not spam. In doing so, the algorithm is able to analyze the features 
+        within each email and then learn which ones are important to recognize if the email is spam or not. This is important because once the model has been trained, we are able to 
+        give the model emails that it has never seen. The model will identify the important features of the email and based on its previous training, be able to make a determination 
+        on if the email it was given should be considered spam or not. If the labels were not included in the training of the model, the algorithm would not have any basis for determining if 
+        the features it identified in the new email make it more likely to be spam or not spam. This is why labeled data is essential for this type of model.
+      </p>  
+      <p>Below in Figure 1 can be seen a sample of the dataset of data that was used for the Naive Bayes Classifier model. This dataset consisted of 8 climate variables (tmpc, pcpn, pdsi, sp01, 
+        sp09, sp24, cddc, and hddc) and 2 air quality variables (PM2.5 and Ozone). The dataset also included the climate division that each entry belonged to. In order to split this dataset into 
+        training and testing sets, the target feature had to first be removed. Then, the dataset was randomly split with 75% of the data being assigned to the training set and 25% of the data being 
+        assigned to the testing set. This was done for both the training features, our X, and the target feature, our y, which in this case was Climate Division. An example of the training and 
+        testing sets can be seen below in Figure 2 and Figure 3, respectively. When splitting the data, it is imperative that training and testing sets be completely disjoint. This is necessary because 
+        the model will use the training set to fine tune its parameters and classification results. The testing set is used to see how well the model generalized to the data instead of just memorize 
+        the information in the training set. If there are observations in the testing set that are also in the training set then the model will have already seen this observation and will be able to 
+        generate the solution based on memory instead of actual prediction. This will skew the model performance metrics to make it look like the model is better generalized to deal with unseen data, 
+        which is what we want, than it really is. Thus, ensuring that the testing set has only data that the model has never seen before is absolutely critical. The code for data preparation and for the 
+        execution of the model can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>.
+        </p>
+
+      <img src="Images/NB Dataset.png" style="display: block; margin: 0 auto;" alt="Figure 1. Naive Bayes Dataset">
+      <img src="Images/NB Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 2. Training Set">
+      <img src="Images/NB Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 3. Testing Set">
+
+      <h4>Results</h4>
+      <p>The Naive Bayes Classifier Model was used to predict the Climate division based on the 8 climate variables and 2 air quality varaibles referenced above. Implementing the model in this way 
+        was intentional because it allowed for climate division classification based on the features. However, it also provided insight into how distinct the climate divisions were from each other based 
+        on these variables. A model that had a very high classfification would indicate that the climate divisions were very distinct based on the features while a model with a lower accuracy would indicate 
+        that the climate divisions were not as distinct based on their climate and air quality characteristics. Figure 4. below is the confusion matrix for the Naive Bayes Model.
+      </p>
+
+      <img src="Images/NB Confusion Matrix.png" style="display: block; margin: 0 auto;" alt="Figure 4. Confusion Matrix">
+
+      <p>The overall accuracy of this model was 0.50. Since there are 3 classes within the model, this means that the model did somewhat better than guessing, which would have yielded approximately an 
+        accuracy of 0.33. We can see from the confusion matrix above the the model had a very difficult time classifying climate division 1, with division 1 observations being incorrectly classified as 
+        division 2 just as many times as being correctly classified. The model performed better for division 4, achieving correct classification for the division almost 50% of the time. The model performed 
+      the best for division 2, with the most correct classifications.</p>
+      <h5>Conclusions</h5>
+      <p>Based on the results above, we can conclude that although is seems as though there are slight variations in climate and air quality conditions between the divisions that could help to define each division, these 
+        differences are not strong enough to get a good classification for a majority of entries. The model performed the best for class 2, which could signal that division 2 has the most unique climate and air 
+        qualtity conditions of the three divisions. This would be followed by division 4, although division 4 shares similar climate and air quality profiles as division 2, which is evidenced by the high rate of 
+        missclassification of division 4 as division 2. Division 1 seems to have no strong climate and air quality profile, leading to many missclassifications for the division. 
+      </p>
     </div>
 
     <div id="dectrees" class="page">
       <h1>Decision Trees</h1>
-      <p>Entropy, Information Gain, and building decision trees.</p>
+      <h2>Overview</h2>
+      <p>Decision Trees are a supervised machine learning algorithm that are used for both classification tasks and for regression tasks. Decision trees work by splitting the training data into subsets based on the values of 
+        the features that best separate the target variable. The tree starts at the root node with all of the data. A feature value is used to make a decision and split the data. Each portion of data travels to the next decision node 
+        where another feature value is used to make another decision. This continues until each branch of the tree ends at a leaf node, where either a classification is made or a regression output is given. Decision trees are useful because 
+        they are interpretable, they are able to handle nonlinear relationships, and they are flexible because they are able to accept numerical and categorical data. Decision trees use GINI, Entropy, and Information gain to determine how to 
+        make the splits within the tree. GINI measures impurity within a node, which represents how mixed that node is. A GINI coefficient of 0 means that there is perfect purity, meaning there is only one class contained within the node. The 
+        maximum Gini coefficient is dependent on the number of classes. For binary classification, and Gini Coefficient of 0.5 means that there is maximum impurity, meaning that the classes are evenly mixed. Entropy is similarly however it 
+        measures disorder. Entropy of 0 means that all of the samples in the node belong to 1 class. Maximum entropy differs depending on the number of classes. For binary classification, entropy of 1 would mean that the classes are 
+        equally mixed within the node. The goal is the achieve the lowest Gini coefficient or Entropy within each node. This is using Information Gain. Information gain measures how much a feature reduces impurity when it is used to split 
+        the dataset. A higher information gain means that the specific feature prduces a better split in the data resulting in a greater reduction in impurity or disorder. An example of this would be a binary classification that has 20 data points 
+        in the root node, 10 that belong to one class and 10 that belong to another. The entropy for this node would be 1, perfectly mixed. Then suppose we have two options for splitting this node. The first option produces two child nodes where 
+        node 1 has an entropy of 0.99 and node 2 has an entropy of 0.91. The second option for splitting produces two child node but this time node 1 has an entropy of 0 and node 2 has an entropy of 0.95. From the values we can determine that the 
+        information gain for split 1 is 0.034 while the information gain for split 2 is 0.24. Since the information gain of the proposed second split is greater, we would choose this split since it produces the greatest information gain. This example 
+        shows how the decision tree in the machine learning algorithm is built. Except in the algorithm, many more possible splits are considered to determine the best split that will produce the greatest information gain. Because decision trees can 
+        have continuous variables, there are techincally an infinite number of trees that could be produced based on infintesimally small adjustments to the values of splitting features. Therefore, criteria needs to be set to help the algorithm determine 
+        the best tree within constraints to prevent overfitting. 
+      </p>
+      <h3>Data Prep</h3>
+      <p>Since a Decision Trees is a supervised learning algorithm it requires "labeled" data in order to be trained correctly. This is a requirement because supervised learning 
+        algorithms are not determining their own classes or groups for the data, they are learning what those classes are based on the data that is provided. Lets consider spam 
+        filters as an example. The spam filter is trained on email data that is already classified as either spam or not spam. In doing so, the algorithm is able to analyze the features 
+        within each email and then learn which ones are important to recognize if the email is spam or not. This is important because once the model has been trained, we are able to 
+        give the model emails that it has never seen. The model will identify the important features of the email and based on its previous training and be able to make a determination 
+        on if the email it was given should be considered spam or not. If the labels were not included in the training of the model, the algorithm would not have any basis for determining if 
+        the features it identified in the new email make it more likely to be spam or not spam. This is why labeled data is essential for this type of model.
+      </p>  
+      <p>Below in Figure 1 can be seen a sample of the dataset of data that was used for the Decision Tree model. This dataset consisted of 8 climate variables (tmpc, pcpn, pdsi, sp01, 
+        sp09, sp24, cddc, and hddc) and 2 air quality variables (PM2.5 and Ozone). The dataset also included the climate division that each entry belonged to and the month of the observation. In order to split this dataset into 
+        training and testing sets, the target features had to first be removed. Then, the dataset was randomly split with 75% of the data being assigned to the training set and 25% of the data being 
+        assigned to the testing set. This was done for both the training features, our X, and the target features, our y, which in this case were PM2.5 and Ozone. An example of the training and 
+        testing sets can be seen below in Figure 2 and Figure 3, respectively. When splitting the data, it is imperative that training and testing sets be completely disjoint. This is necessary because 
+        the model will use the training set to fine tune its parameters and classification results. The testing set is used to see how well the model generalized to the data instead of just memorize 
+        the information in the training set. If there are observations in the testing set that are also in the training set then the model will have already seen this observation and will be able to 
+        generate the solution based on memory instead of actual prediction. This will skew the model performance metrics to make it look like the model is better generalized to deal with unseen data, 
+        which is what we want, than it really is. Thus, ensuring that the testing set has only data that the model has never seen before is absolutely critical. The code for data preparation and for the 
+        execution of the model can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>.
+        </p>
+
+      <img src="Images/DT Dataset.png" style="display: block; margin: 0 auto;" alt="Figure 1. Decision Tree Dataset">
+      <img src="Images/DT Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 2. Training Set">
+      <img src="Images/DT Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 3. Testing Set">
+      <h4>Results</h4>
+      <p></p>
+      <h5>Conclusions</h5>
+      <p></p>
     </div>
 
     <div id="svms" class="page">
@@ -414,7 +517,7 @@
          leadership and staff positions from the tactical to organizational level. Sean spent 4 years as an Infantry 
          Officer and 7 years as a Military Intelligence Officer. In 2024, Sean reclassified as an Operations Research 
          and Systems Analysis Officer. As part of this transition, Sean has enrolled in the Master's of Data Science 
-         program at University of Colorado, Boulder with an anticipated graduation date of May 2026.
+         program at the University of Colorado, Boulder with an anticipated graduation date of May 2026.
       </p>
     </div>
   </div>
