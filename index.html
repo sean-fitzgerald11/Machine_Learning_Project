@@ -496,7 +496,24 @@
       <img src="Images/DT Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 4. Training Set">
       <img src="Images/DT Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 5. Testing Set">
       <h2>Results</h2>
-      <p></p>
+      <p>The Decision Tree Regressor model was used to predict both the PM2.5 level and the Ozone level based on the features mentioned above. This was done to determine if the features were strong enough 
+        predictors for these air quality variables and therefore if conclusions could be made about the ability of climate factors to predict air quality conditions. The R^2 of the model for PM2.5 was 
+        -0.644. This means that the model performed worse than if it had just guessed the mean value of PM2.5 for each testing observation. The R^2 value for the Ozone model was 0.5852. This means that 
+        the model was able to explain about 58% of the variablility in the data. Below, Figure 6 is the feature importances for the PM2.5 model and Figure 7 is the feature importances for the Ozone model. 
+        Additionally, Figure 8 shows the decision tree structure for the Ozone model.
+      </p>
+
+      <img src="Images/DT3 Importances.png" style="display: block; margin: 0 auto;" alt="Figure 6. DT3 Feature Importance">
+      <img src="Images/DT1 Importances.png" style="display: block; margin: 0 auto;" alt="Figure 7. DT2 Feature Importance">
+      <img src="Images/DT1 Tree.png" style="display: block; margin: 0 auto;" alt="Figure 8. DT1 Tree">      
+
+      <p>Since the Ozone model performed the best out of the two models, I felt as though the climate varaibles had some ability to predict Ozone levels. Therefore, I ran this model again but instead used the 
+        Random Forest Regressor model instead of the standard Decision Tree Regressor model. This new model generated an R^2 of 0.7631. This means that the improved model was able to explain about 76% of the 
+        variability in the data. Figure 9 below shows the feature importances for the improved model.
+      </p>
+
+      <img src="Images/DT2(RF) Importances.png" style="display: block; margin: 0 auto;" alt="Figure 6. RF Feature Importance">
+
       <h2>Conclusions</h2>
       <p></p>
     </div>
