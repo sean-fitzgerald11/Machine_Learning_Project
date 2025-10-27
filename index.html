@@ -504,7 +504,7 @@
       </p>
 
       <img src="Images/DT3 Importances.png" style="display: block; margin: 0 auto;" alt="Figure 6. DT3 Feature Importance">
-      <img src="Images/DT1 Importances.png" style="display: block; margin: 0 auto;" alt="Figure 7. DT2 Feature Importance">
+      <img src="Images/DT1 Importances.png" style="display: block; margin: 0 auto;" alt="Figure 7. DT1 Feature Importance">
       <img src="Images/DT1 Tree.png" style="display: block; margin: 0 auto;" alt="Figure 8. DT1 Tree">      
 
       <p>Since the Ozone model performed the best out of the two models, I felt as though the climate varaibles had some ability to predict Ozone levels. Therefore, I ran this model again but instead used the 
@@ -515,7 +515,14 @@
       <img src="Images/DT2(RF) Importances.png" style="display: block; margin: 0 auto;" alt="Figure 6. RF Feature Importance">
 
       <h2>Conclusions</h2>
-      <p></p>
+      <p>Through the use of decision trees I was able to learn several things about my topic. First off, this model had no ability to predict PM2.5 levels based climate factors, climate division, or date of observation. 
+        From this we can conclude that these levels, although potentially impacted by climate conditions, are heavily driven by other factors that are not included within our dataset. We did see that climate variables did 
+        do a decent job at being able to predict Ozone levels. From Figure 7 above we can see that the most important features in the model were hddc (representing over half of the relative importance), sp24, and the month 
+        of the observation. We can conclude that most likely what is happening is that hddc is being used by the model as a proxy for season, as a low number of hddc correlates strongly with summer time. We know that Ozone 
+        prevalence is much higher in the summer due to more sunlight, warmer temperatures, and stable or stagnant air conditions. For further investigation, we could use remove all but one feature that could be used by the 
+        model for seasonality and then retrain the model. In doing this we would assume that the seasonal feature would again have the higest importance, however it would allow us to see which other climate features that are 
+        not associated with seasonality had a high importance, potentially leading to other conclusions about the connection between climate and air quality conditions. 
+      </p>
     </div>
 
     <div id="svms" class="page">
