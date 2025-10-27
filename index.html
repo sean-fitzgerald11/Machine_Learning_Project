@@ -445,7 +445,8 @@
       <h2>Overview</h2>
       <p>Decision Trees are a supervised machine learning algorithm that are used for both classification tasks and for regression tasks. Decision trees work by splitting the training data into subsets based on the values of 
         the features that best separate the target variable. The tree starts at the root node with all of the data. A feature value is used to make a decision and split the data. Each portion of data travels to the next decision node 
-        where another feature value is used to make another decision. This continues until each branch of the tree ends at a leaf node, where either a classification is made or a regression output is given. Decision trees are useful because 
+        where another feature value is used to make another decision. This continues until each branch of the tree ends at a leaf node, where either a classification is made or a regression output is given. An example of a decision tree can 
+        be seen in Figure 1 below. Decision trees are useful because 
         they are interpretable, they are able to handle nonlinear relationships, and they are flexible because they are able to accept numerical and categorical data. Decision trees use GINI, Entropy, and Information gain to determine how to 
         make the splits within the tree. GINI measures impurity within a node, which represents how mixed that node is. A GINI coefficient of 0 means that there is perfect purity, meaning there is only one class contained within the node. The 
         maximum Gini coefficient is dependent on the number of classes. For binary classification, and Gini Coefficient of 0.5 means that there is maximum impurity, meaning that the classes are evenly mixed. Entropy is similarly however it 
@@ -455,10 +456,21 @@
         in the root node, 10 that belong to one class and 10 that belong to another. The entropy for this node would be 1, perfectly mixed. Then suppose we have two options for splitting this node. The first option produces two child nodes where 
         node 1 has an entropy of 0.99 and node 2 has an entropy of 0.91. The second option for splitting produces two child node but this time node 1 has an entropy of 0 and node 2 has an entropy of 0.95. From the values we can determine that the 
         information gain for split 1 is 0.034 while the information gain for split 2 is 0.24. Since the information gain of the proposed second split is greater, we would choose this split since it produces the greatest information gain. This example 
-        shows how the decision tree in the machine learning algorithm is built. Except in the algorithm, many more possible splits are considered to determine the best split that will produce the greatest information gain. Because decision trees can 
+        shows how the decision tree in the machine learning algorithm is built. An visual of this example can be seen below in Figure 2. Except in the algorithm, many more possible splits are considered to determine the best split that will produce the greatest information gain. Because decision trees can 
         have continuous variables, there are techincally an infinite number of trees that could be produced based on infintesimally small adjustments to the values of splitting features. Therefore, criteria needs to be set to help the algorithm determine 
         the best tree within constraints to prevent overfitting. 
       </p>
+
+      <figure style="text-align: center;">
+      <img src="Images/DT Image 1.png" style="display: block; margin: 0 auto;" alt="Figure 1. Decision Tree Example">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: CU Boulder CSCI5612 - Machine Learning Lesson Slides. Dr. Osita Onyejekwe (https://canvas.colorado.edu/courses/127577/files/80992493?module_item_id=6822719)</figcaption>
+      </figure>
+
+      <figure style="text-align: center;">
+      <img src="Images/DT Image 2.png" style="display: block; margin: 0 auto;" alt="Figure 2. Entropy Example">
+      <figcaption style="font-size: 0.9em; color:gray;">Source: Inside Algorithms: 'Decision tree: structure, training and Python code' (https://www.insidealgorithms.com/blog/decision-tree/)</figcaption>
+      </figure>      
+
       <h2>Data Prep</h2>
       <p>Since a Decision Trees is a supervised learning algorithm it requires "labeled" data in order to be trained correctly. This is a requirement because supervised learning 
         algorithms are not determining their own classes or groups for the data, they are learning what those classes are based on the data that is provided. Lets consider spam 
@@ -468,11 +480,11 @@
         on if the email it was given should be considered spam or not. If the labels were not included in the training of the model, the algorithm would not have any basis for determining if 
         the features it identified in the new email make it more likely to be spam or not spam. This is why labeled data is essential for this type of model.
       </p>  
-      <p>Below in Figure 1 can be seen a sample of the dataset of data that was used for the Decision Tree model. This dataset consisted of 8 climate variables (tmpc, pcpn, pdsi, sp01, 
+      <p>Below in Figure 3 can be seen a sample of the dataset of data that was used for the Decision Tree model. This dataset consisted of 8 climate variables (tmpc, pcpn, pdsi, sp01, 
         sp09, sp24, cddc, and hddc) and 2 air quality variables (PM2.5 and Ozone). The dataset also included the climate division that each entry belonged to and the month of the observation. In order to split this dataset into 
         training and testing sets, the target features had to first be removed. Then, the dataset was randomly split with 75% of the data being assigned to the training set and 25% of the data being 
         assigned to the testing set. This was done for both the training features, our X, and the target features, our y, which in this case were PM2.5 and Ozone. An example of the training and 
-        testing sets can be seen below in Figure 2 and Figure 3, respectively. When splitting the data, it is imperative that training and testing sets be completely disjoint. This is necessary because 
+        testing sets can be seen below in Figure 4 and Figure 5, respectively. When splitting the data, it is imperative that training and testing sets be completely disjoint. This is necessary because 
         the model will use the training set to fine tune its parameters and classification results. The testing set is used to see how well the model generalized to the data instead of just memorize 
         the information in the training set. If there are observations in the testing set that are also in the training set then the model will have already seen this observation and will be able to 
         generate the solution based on memory instead of actual prediction. This will skew the model performance metrics to make it look like the model is better generalized to deal with unseen data, 
@@ -480,9 +492,9 @@
         execution of the model can be found <a href="https://github.com/sean-fitzgerald11/Machine_Learning_Project/tree/main/Code" target="_blank">here</a>.
         </p>
 
-      <img src="Images/DT Dataset.png" style="display: block; margin: 0 auto;" alt="Figure 1. Decision Tree Dataset">
-      <img src="Images/DT Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 2. Training Set">
-      <img src="Images/DT Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 3. Testing Set">
+      <img src="Images/DT Dataset.png" style="display: block; margin: 0 auto;" alt="Figure 3. Decision Tree Dataset">
+      <img src="Images/DT Training Set.png" style="display: block; margin: 0 auto;" alt="Figure 4. Training Set">
+      <img src="Images/DT Testing Set.png" style="display: block; margin: 0 auto;" alt="Figure 5. Testing Set">
       <h2>Results</h2>
       <p></p>
       <h2>Conclusions</h2>
